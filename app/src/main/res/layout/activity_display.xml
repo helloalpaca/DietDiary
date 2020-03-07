@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    tools:context=".Display">
+
+    <TextView
+        android:id="@+id/display_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="date"/>
+
+    <TextView
+        android:id="@+id/display_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/display_date"
+        android:text="place"/>
+
+    <TextView
+        android:id="@+id/displace_eat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/display_place"
+        android:text="eat"/>
+
+    <Button
+        android:id="@+id/display_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="수정"
+        android:onClick="onClickButtonModify"/>
+
+    <Button
+        android:id="@+id/display_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="삭제"
+        android:onClick="onClickButtonDelete"/>
+
+</RelativeLayout>

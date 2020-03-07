@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddList">
+
+    <TextView
+        android:id="@+id/addlist_txt_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="날짜 : "/>
+
+    <EditText
+        android:id="@+id/addlist_edit_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addlist_txt_date"
+        android:inputType="date"/>
+
+    <TextView
+        android:id="@+id/addlist_txt_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addlist_edit_date"
+        android:text="장소 : "/>
+
+    <EditText
+        android:id="@+id/addlist_edit_place"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addlist_txt_place"/>
+
+    <TextView
+        android:id="@+id/addlist_txt_eat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addlist_edit_place"
+        android:text="내용 : "/>
+
+    <EditText
+        android:id="@+id/addlist_edit_eat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addlist_txt_eat"/>
+
+    <Button
+        android:id="@+id/addlist_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="추가"
+        android:onClick="onClickButton1"/>
+
+
+</RelativeLayout>
