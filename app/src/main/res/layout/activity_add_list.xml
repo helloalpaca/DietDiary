@@ -12,18 +12,19 @@
         android:layout_height="wrap_content"
         android:text="날짜 : "/>
 
-    <EditText
-        android:id="@+id/addlist_edit_date"
+    <Button
+        android:id="@+id/addlist_btn_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/addlist_txt_date"
-        android:inputType="date"/>
+        android:text="날짜"
+        android:onClick="onClickButtonDate"/>
 
     <TextView
         android:id="@+id/addlist_txt_place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/addlist_edit_date"
+        android:layout_below="@id/addlist_btn_date"
         android:text="장소 : "/>
 
     <EditText
@@ -52,7 +53,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="추가"
-        android:onClick="onClickButton1"/>
+        android:onClick="onClickButtonAdd"/>
 
 
 </RelativeLayout>

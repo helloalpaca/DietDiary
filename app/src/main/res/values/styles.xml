@@ -11,18 +11,25 @@
     <style name="MovieDialog" parent="Theme.AppCompat.DayNight.Dialog">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:textViewStyle">@style/customTextView</item>
+        <item name="android:buttonStyle">@style/custonButton</item>
     </style>
 
-    <style name="customTextView" parent="android:Widget.TextView">
+
+    <style name="customTextView" parent="android:style/Widget.DeviceDefault.TextView">
         <item name="android:fontFamily">@font/ridibatang</item>
     </style>
-    <style name="custonButton" parent="android:Widget.Button">
+    <style name="custonButton" parent="android:style/Widget.DeviceDefault.Button.Borderless">
         <item name="android:fontFamily">@font/ridibatang</item>
     </style>
+
+
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:textViewStyle">@style/customTextView</item>
+        <item name="android:buttonStyle">@style/custonButton</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".ModifyDatetime"
+            android:theme="@style/MovieDialog" ></activity>
         <activity
             android:name=".Display"
-            android:theme="@style/MovieDialog"></activity>
+            android:theme="@style/MovieDialog" />
         <activity android:name=".AddList" />
         <activity
             android:name=".MainActivity"
