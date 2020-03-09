@@ -11,12 +11,13 @@
         android:src="@drawable/icon"
         android:layout_width="100dp"
         android:layout_height="100dp" />
+
     <TextView
         android:id="@+id/listview_txt"
-        android:text="답변내용은 블라블라"
+        android:text="Hello, World! "
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center" />
 
 </LinearLayout>

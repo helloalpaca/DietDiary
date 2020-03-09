@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import static com.minseon.dietdiary.AddList.datebtn;
+
 public class ModifyDatetime extends AppCompatActivity implements View.OnClickListener{
 
     static TextView txt;
@@ -49,6 +51,8 @@ public class ModifyDatetime extends AppCompatActivity implements View.OnClickLis
 
     public void onClickButtonModifyDate(View view){
         Toast.makeText(this, "버튼눌림!", Toast.LENGTH_SHORT).show();
+        datebtn.setText(txt.getText());
+        onBackPressed();
     }
 
     @Override

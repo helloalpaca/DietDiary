@@ -43,4 +43,10 @@
         android:text="삭제"
         android:onClick="onClickButtonDelete"/>
 
+    <ImageView
+        android:id="@+id/display_img"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/displace_eat"/>
+
 </RelativeLayout>

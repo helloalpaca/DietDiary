@@ -55,5 +55,14 @@
         android:text="추가"
         android:onClick="onClickButtonAdd"/>
 
+    <ImageButton
+        android:id="@+id/addlist_imgbtn"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/icon"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/addlist_edit_eat"
+        android:onClick="onClickButtonImg"/>
+
 
 </RelativeLayout>

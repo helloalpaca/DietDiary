@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Setting"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Setting"/>
+
+    <Button
+        android:id="@+id/setting_btn_export"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="내보내기"
+        android:onClick="onClickButtonExportJSON"/>
+
+    <Button
+        android:id="@+id/setting_btn_import"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="가져오기"
+        android:onClick="onClickButtonImportJSON"/>
+
+</LinearLayout>

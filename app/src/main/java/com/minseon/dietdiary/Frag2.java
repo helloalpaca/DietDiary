@@ -15,6 +15,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import static com.minseon.dietdiary.MainActivity.format;
 import static com.minseon.dietdiary.ModifyDatetime.nowdatetime;
 import static com.minseon.dietdiary.ModifyDatetime.txt;
 
@@ -29,15 +30,10 @@ public class Frag2 extends Fragment {
 
         timePicker = (TimePicker)view.findViewById(R.id.datePicker);
 
-        final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
         String str = nowdatetime;
         Date date = null;
-        try {
-            date = format.parse(nowdatetime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
+        try { date = format.parse(nowdatetime);
+        } catch (ParseException e) { e.printStackTrace(); }
         cal = Calendar.getInstance();
         cal.setTime(date);
 
@@ -50,7 +46,6 @@ public class Frag2 extends Fragment {
                 txt.setText(format.format(cal.getTime()).toString());
             }
         });
-
         return view;
     }
 }

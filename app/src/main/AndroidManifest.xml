@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.minseon.dietdiary">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -9,8 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ModifyDatetime"
-            android:theme="@style/MovieDialog" ></activity>
+        <activity android:name=".Setting"></activity>
+        <activity android:name=".CalendarActivity" />
+        <activity
+            android:name=".ModifyDatetime"
+            android:theme="@style/MovieDialog" />
         <activity
             android:name=".Display"
             android:theme="@style/MovieDialog" />

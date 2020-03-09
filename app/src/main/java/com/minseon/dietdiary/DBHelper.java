@@ -13,7 +13,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE if not exists diary ("
                 + "_id integer primary key autoincrement,"
-                + "date datetime, place text, eat text);";
+                + "date datetime, place text, eat text, uri text);";
 
         db.execSQL(sql);
     }
