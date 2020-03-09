@@ -3,50 +3,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="300dp"
-    android:layout_height="300dp"
+    android:layout_height="wrap_content"
     tools:context=".Display">
 
     <TextView
         android:id="@+id/display_date"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
         android:text="date"/>
 
     <TextView
         android:id="@+id/display_place"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/display_date"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
         android:text="place"/>
 
     <TextView
         android:id="@+id/displace_eat"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/display_place"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
         android:text="eat"/>
+
+    <ImageButton
+        android:id="@+id/display_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_delete"
+        android:background="#00ff0000"
+        android:layout_alignParentRight="true"
+        android:onClick="onClickButtonDelete"/>
+
+    <ImageView
+        android:id="@+id/display_img"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_below="@id/displace_eat"
+        android:layout_marginTop="10dp"/>
 
     <Button
         android:id="@+id/display_modify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/display_img"
         android:layout_centerHorizontal="true"
         android:text="수정"
         android:onClick="onClickButtonModify"/>
-
-    <Button
-        android:id="@+id/display_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="삭제"
-        android:onClick="onClickButtonDelete"/>
-
-    <ImageView
-        android:id="@+id/display_img"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_below="@id/displace_eat"/>
 
 </RelativeLayout>

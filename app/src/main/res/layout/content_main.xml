@@ -17,22 +17,25 @@
 
         <ImageButton
             android:id="@+id/main_imgbtn1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/ic_keyboard_arrow_left"
+            android:background="#00ff0000"
             android:onClick="onClickButtonDayBefore"/>
 
         <Button
             android:id="@+id/main_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3월8일"/>
+            android:text="3월8일"
+            android:textColor="#A593E0"/>
 
         <ImageButton
             android:id="@+id/main_imgbtn2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/ic_keyboard_arrow_right"
+            android:background="#00ff0000"
             android:onClick="onClickButtonDayAfter"/>
 
     </LinearLayout>
@@ -41,15 +44,19 @@
         android:id="@+id/main_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:dividerHeight="1dp"
+        android:divider="#00ff0000">
     </ListView>
 
-    <Button
+    <ImageButton
         android:id="@+id/main_btn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="캘린더"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/ic_calendar_today"
+        android:background="#00ff0000"
         android:onClick="onClickButtonCalendar"/>
 
 </LinearLayout>

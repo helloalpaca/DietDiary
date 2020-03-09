@@ -2,22 +2,23 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="100dp"
     android:orientation="horizontal"
     android:layout_margin="10dp">
 
     <ImageView
         android:id="@+id/listview_img"
-        android:src="@drawable/icon"
         android:layout_width="100dp"
-        android:layout_height="100dp" />
+        android:layout_height="100dp"
+        android:padding="10dp"/>
 
     <TextView
         android:id="@+id/listview_txt"
         android:text="Hello, World! "
         android:textSize="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center_vertical" />
 
 </LinearLayout>

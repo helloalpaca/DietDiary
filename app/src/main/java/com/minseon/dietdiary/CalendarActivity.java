@@ -30,7 +30,6 @@ public class CalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
-        textView = (TextView)findViewById(R.id.calendar_txt);
         calendarView2 = (CalendarView)findViewById(R.id.calendarView2);
         listView2 = (ListView)findViewById(R.id.calendar_listview);
 
@@ -42,7 +41,6 @@ public class CalendarActivity extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 System.out.println("year : "+year+", month : "+month+", day : "+dayOfMonth);
                 mycal.set(year, month, dayOfMonth);
-                textView.setText(formatmain.format(mycal.getTime()).toString());
                 queryDB();
             }
         });
@@ -50,7 +48,6 @@ public class CalendarActivity extends AppCompatActivity {
 
     public void queryDB(){
         String day = formatdate.format(mycal.getTime());
-        textView.setText(formatmain.format(mycal.getTime()));
         String sql = "SELECT * FROM diary WHERE date BETWEEN '"+day+" 00:00:00' AND '"+day+" 23:59:59'";
         final Cursor c = db.rawQuery(sql,null);
         String[] strs = new String[]{"eat"};

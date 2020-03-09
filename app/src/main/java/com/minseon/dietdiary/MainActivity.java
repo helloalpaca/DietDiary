@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -67,10 +68,8 @@ public class MainActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(MainActivity.this,
                 permission_list,  1);
 
-        listView =(ListView)findViewById(R.id.main_listview);
-        daybefore = (ImageButton)findViewById(R.id.main_imgbtn1);
-        dayafter = (ImageButton)findViewById(R.id.main_imgbtn2);
         daybtn = (Button)findViewById(R.id.main_btn);
+        listView = (ListView)findViewById(R.id.main_listview);
 
         helper = new DBHelper(MainActivity.this, "person.db", null, 1);
         db = helper.getWritableDatabase();
@@ -97,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        ImageButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

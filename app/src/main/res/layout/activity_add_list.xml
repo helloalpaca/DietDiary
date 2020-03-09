@@ -6,45 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".AddList">
 
-    <TextView
-        android:id="@+id/addlist_txt_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="날짜 : "/>
-
     <Button
         android:id="@+id/addlist_btn_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/addlist_txt_date"
         android:text="날짜"
         android:onClick="onClickButtonDate"/>
 
-    <TextView
-        android:id="@+id/addlist_txt_place"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/addlist_btn_date"
-        android:text="장소 : "/>
-
     <EditText
         android:id="@+id/addlist_edit_place"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/addlist_txt_place"/>
-
-    <TextView
-        android:id="@+id/addlist_txt_eat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/addlist_edit_place"
-        android:text="내용 : "/>
+        android:layout_centerHorizontal="true"
+        android:background="#00ff0000"
+        android:layout_below="@id/addlist_btn_date"
+        android:hint="장소"/>
 
     <EditText
         android:id="@+id/addlist_edit_eat"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/addlist_txt_eat"/>
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:background="#00ff0000"
+        android:layout_below="@id/addlist_edit_place"
+        android:hint="내용"/>
+
+    <ImageButton
+        android:id="@+id/addlist_imgbtn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_add"
+        android:background="#00ff0000"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/addlist_edit_eat"
+        android:layout_above="@id/addlist_btn"
+        android:onClick="onClickButtonImg"/>
 
     <Button
         android:id="@+id/addlist_btn"
@@ -54,15 +51,6 @@
         android:layout_centerHorizontal="true"
         android:text="추가"
         android:onClick="onClickButtonAdd"/>
-
-    <ImageButton
-        android:id="@+id/addlist_imgbtn"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:src="@drawable/icon"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/addlist_edit_eat"
-        android:onClick="onClickButtonImg"/>
 
 
 </RelativeLayout>

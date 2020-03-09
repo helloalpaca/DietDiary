@@ -11,12 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import static com.minseon.dietdiary.MainActivity.db;
+import static java.sql.Types.NULL;
 
 public class Display extends AppCompatActivity {
 
     TextView date, place, eat;
     ImageView img;
-    Button modify, delete;
     String str1, str2, str3, str4;
 
     @Override
@@ -28,8 +28,6 @@ public class Display extends AppCompatActivity {
         place = (TextView)findViewById(R.id.display_place);
         eat = (TextView)findViewById(R.id.displace_eat);
         img = (ImageView)findViewById(R.id.display_img);
-        modify = (Button)findViewById(R.id.display_modify);
-        delete = (Button)findViewById(R.id.display_delete);
 
         Intent intent = getIntent();
         str1 = intent.getStringExtra("date");
@@ -54,7 +52,9 @@ public class Display extends AppCompatActivity {
 
     public void onClickButtonDelete(View view){
 
-        db.delete("diary","date=? AND place=? AND eat=? AND uri=?",new String[]{str1, str2, str3, str4});
+        System.out.println(str1+" "+str2+" "+str3+" "+str4);
+        if(str4==null) { db.delete("diary","date=? AND place=? AND eat=?",new String[]{str1, str2, str3}); }
+        else db.delete("diary","date=? AND place=? AND eat=? AND uri=?",new String[]{str1, str2, str3, str4});
         Intent intent = new Intent(Display.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

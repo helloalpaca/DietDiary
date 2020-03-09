@@ -58,17 +58,20 @@ public class AddList extends AppCompatActivity {
         ex_place = intent.getStringExtra("place");
         ex_eat = intent.getStringExtra("eat");
         ex_uri = intent.getStringExtra("uri");
+
+        System.out.println("date!! : "+ex_date);
+        System.out.println("place!! : "+ex_place);
+        System.out.println("eat!! : "+ex_eat);
+        System.out.println("uri!! : "+ex_uri);
+
         if(ex_date!=null|| ex_place!=null || ex_eat!=null || ex_uri!=null) flag = true;
 
         if(ex_date==null) { datebtn.setText(format.format(calendar.getTime()).toString()); }
         else { datebtn.setText(ex_date); }
 
-        if(ex_uri!=null) {
-            InputStream in = null;
-            try { in = getContentResolver().openInputStream(Uri.parse(ex_uri));
-            } catch (FileNotFoundException e) { e.printStackTrace(); }
-            Bitmap img = BitmapFactory.decodeStream(in);
-            imgbtn.setImageBitmap(img);
+        if(ex_uri!=null){
+            Uri tempuri = Uri.parse(ex_uri);
+            imgbtn.setImageURI(tempuri);
         }
 
         place.setText(ex_place);
@@ -112,11 +115,11 @@ public class AddList extends AppCompatActivity {
     protected  void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
         if(requestCode == REQUEST_CODE) {
-            Uri temp = data.getData();
-            //uri = getRealPathFromURI(temp);
-            uri = data.getData();
-            System.out.println("URI!:"+uri);
             if(resultCode == RESULT_OK) {
+                Uri temp = data.getData();
+                //uri = getRealPathFromURI(temp);
+                uri = data.getData();
+                System.out.println("URI!:"+uri);
                 try{
                     InputStream in = getContentResolver().openInputStream(temp);
                     Bitmap img = BitmapFactory.decodeStream(in);

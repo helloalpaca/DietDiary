@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,11 +39,12 @@ public class ImageCursorAdapter extends SimpleCursorAdapter {
         String place = this.c.getString(this.c.getColumnIndex("place"));
         String eat = this.c.getString(this.c.getColumnIndex("eat"));
         String struri = this.c.getString(this.c.getColumnIndex("uri"));
+
         ImageView iv = (ImageView) v.findViewById(R.id.listview_img);
-        if (struri != null) { iv.setImageURI(Uri.parse(struri)); }
-        else { iv.setVisibility(inView.GONE); }
         TextView txt = (TextView) v.findViewById(R.id.listview_txt);
         txt.setText(eat);
+        if (struri != null) { iv.setImageURI(Uri.parse(struri)); }
+        //else { iv.setVisibility(inView.GONE); txt.setGravity(Gravity.CENTER);}
         return (v);
     }
 }
