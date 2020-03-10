@@ -1,52 +1,28 @@
 package com.minseon.dietdiary;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import static java.sql.Types.NULL;
+import static com.minseon.dietdiary.SplashActivity.db;
 
 public class MainActivity extends AppCompatActivity {
 
-    DBHelper helper;
-    static SQLiteDatabase db;
     BaseAdapter adapter;
     static final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
     static final SimpleDateFormat formatdate = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
@@ -70,10 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
         daybtn = (Button)findViewById(R.id.main_btn);
         listView = (ListView)findViewById(R.id.main_listview);
-
-        helper = new DBHelper(MainActivity.this, "person.db", null, 1);
-        db = helper.getWritableDatabase();
-        helper.onCreate(db);
 
         calendar = Calendar.getInstance();
         queryDB();

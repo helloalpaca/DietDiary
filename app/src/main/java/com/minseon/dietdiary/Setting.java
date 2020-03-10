@@ -12,6 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.opencsv.CSVReader;
 
 import java.io.BufferedReader;
@@ -23,12 +26,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import static com.minseon.dietdiary.AddList.REQUEST_CODE;
-import static com.minseon.dietdiary.MainActivity.db;
+import static com.minseon.dietdiary.SplashActivity.db;
 import static java.sql.Types.NULL;
 
 public class Setting extends AppCompatActivity {
 
-    Button btn_export, btn_import;
+    Button btn_export, btn_import, btn_changesplash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,11 @@ public class Setting extends AppCompatActivity {
 
         btn_export = (Button)findViewById(R.id.setting_btn_export);
         btn_import = (Button)findViewById(R.id.setting_btn_import);
+        btn_changesplash = (Button)findViewById(R.id.setting_btn_splash);
+
+        AdView adView = (AdView)findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 
     public void onClickButtonExportJSON(View view) throws IOException {
@@ -74,6 +82,11 @@ public class Setting extends AppCompatActivity {
         intent.setType("text/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    public void onClickButtonChangeSplash(View view){
+        Intent intent = new Intent(Setting.this, ChangeSplashActivity.class);
+        startActivity(intent);
     }
 
 

@@ -43,6 +43,7 @@ public class ImageCursorAdapter extends SimpleCursorAdapter {
         ImageView iv = (ImageView) v.findViewById(R.id.listview_img);
         TextView txt = (TextView) v.findViewById(R.id.listview_txt);
         txt.setText(eat);
+        System.out.println("struri : "+struri);
         if (struri != null) { iv.setImageURI(Uri.parse(struri)); }
         //else { iv.setVisibility(inView.GONE); txt.setGravity(Gravity.CENTER);}
         return (v);

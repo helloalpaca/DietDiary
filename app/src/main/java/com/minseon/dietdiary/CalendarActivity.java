@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
-import static com.minseon.dietdiary.MainActivity.db;
+import static com.minseon.dietdiary.SplashActivity.db;
 import static com.minseon.dietdiary.MainActivity.formatdate;
 import static com.minseon.dietdiary.MainActivity.formatmain;
 

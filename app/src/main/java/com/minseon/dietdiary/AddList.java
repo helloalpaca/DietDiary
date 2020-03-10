@@ -27,7 +27,7 @@ import java.util.Locale;
 
 import static android.provider.CalendarContract.CalendarCache.URI;
 import static com.minseon.dietdiary.MainActivity.calendar;
-import static com.minseon.dietdiary.MainActivity.db;
+import static com.minseon.dietdiary.SplashActivity.db;
 import static com.minseon.dietdiary.MainActivity.format;
 import static java.sql.Types.NULL;
 

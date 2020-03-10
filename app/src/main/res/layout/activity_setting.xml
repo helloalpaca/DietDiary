@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,9 +8,10 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/setting_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="환경설정"
         android:textSize="20dp"
@@ -20,6 +21,7 @@
         android:id="@+id/setting_btn_export"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/setting_txt"
         android:text="내보내기"
         android:onClick="onClickButtonExportJSON"/>
 
@@ -27,8 +29,25 @@
         android:id="@+id/setting_btn_import"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/setting_btn_export"
         android:text="가져오기"
         android:onClick="onClickButtonImportJSON"/>
 
+    <Button
+        android:id="@+id/setting_btn_splash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/setting_btn_import"
+        android:text="첫화면 문구 변경하기"
+        android:onClick="onClickButtonChangeSplash"/>
 
-</LinearLayout>
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="/6499/example/banner"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

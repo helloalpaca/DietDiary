@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import static com.minseon.dietdiary.MainActivity.db;
+import static com.minseon.dietdiary.SplashActivity.db;
 import static java.sql.Types.NULL;
 
 public class Display extends AppCompatActivity {

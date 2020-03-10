@@ -16,13 +16,24 @@ public class DBHelper extends SQLiteOpenHelper {
                 + "date datetime, place text, eat text, uri text);";
 
         db.execSQL(sql);
+
+        String sql2 = "CREATE TABLE if not exists splash ("
+                + "_id integer primary key autoincrement,"
+                + "txt text);";
+
+        db.execSQL(sql2);
+
+        String sql3 = "INSERT INTO splash (txt) values('My Diet Diary');";
+
+        db.execSQL(sql3);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String sql = "DROP TABLE if exists diary";
-
         db.execSQL(sql);
+        String sql2 = "DROP TABLE if exists splash";
+        db.execSQL(sql2);
         onCreate(db);
     }
 }
