@@ -6,7 +6,6 @@ import androidx.cursoradapter.widget.SimpleCursorAdapter;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import android.widget.BaseAdapter;
 import android.widget.CalendarView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,7 +14,6 @@ import java.util.Calendar;
 
 import static com.minseon.dietdiary.SplashActivity.db;
 import static com.minseon.dietdiary.MainActivity.formatdate;
-import static com.minseon.dietdiary.MainActivity.formatmain;
 
 public class CalendarActivity extends AppCompatActivity {
 
@@ -23,7 +21,7 @@ public class CalendarActivity extends AppCompatActivity {
     CalendarView calendarView2;
     ListView listView2;
     Calendar mycal;
-    SimpleCursorAdapter adapter;
+    CalendarCursorAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +48,9 @@ public class CalendarActivity extends AppCompatActivity {
         String day = formatdate.format(mycal.getTime());
         String sql = "SELECT * FROM diary WHERE date BETWEEN '"+day+" 00:00:00' AND '"+day+" 23:59:59'";
         final Cursor c = db.rawQuery(sql,null);
-        String[] strs = new String[]{"eat"};
+        String[] strs = new String[]{"eat","category"};
         int[] ints = new int[] {R.id.listview2_txt};
-        adapter = new SimpleCursorAdapter(listView2.getContext(), R.layout.listview2, c, strs, ints,0);
+        adapter = new CalendarCursorAdapter(listView2.getContext(), R.layout.listview2, c, strs, ints);
         listView2.setAdapter(adapter);
     }
 }

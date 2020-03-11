@@ -13,20 +13,33 @@
         android:text="날짜"
         android:onClick="onClickButtonDate"/>
 
+    <Spinner
+        android:id="@+id/addlist_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addlist_btn_date"
+        android:layout_centerHorizontal="true"
+        android:entries="@array/spinner_array"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"/>
+
     <EditText
         android:id="@+id/addlist_edit_place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:background="#00ff0000"
-        android:layout_below="@id/addlist_btn_date"
+        android:layout_below="@id/addlist_spinner"
         android:hint="장소"/>
 
     <EditText
         android:id="@+id/addlist_edit_eat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:background="#00ff0000"
         android:layout_below="@id/addlist_edit_place"
@@ -38,6 +51,7 @@
         android:layout_height="match_parent"
         android:src="@drawable/ic_add"
         android:background="#00ff0000"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/addlist_edit_eat"
         android:layout_above="@id/addlist_btn"

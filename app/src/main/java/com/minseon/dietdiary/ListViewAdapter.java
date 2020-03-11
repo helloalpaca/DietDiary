@@ -68,7 +68,6 @@ public class ListViewAdapter extends BaseAdapter {
 
         ListViewItem listViewItem = list.get(position);
 
-        img.setImageResource(R.drawable.icon);
         txt.setText(listViewItem.getStr());
 
 

@@ -50,7 +50,7 @@ public class ModifyDatetime extends AppCompatActivity implements View.OnClickLis
     }
 
     public void onClickButtonModifyDate(View view){
-        Toast.makeText(this, "버튼눌림!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, txt.getText(), Toast.LENGTH_SHORT).show();
         datebtn.setText(txt.getText());
         onBackPressed();
     }

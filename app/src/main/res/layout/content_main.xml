@@ -17,8 +17,8 @@
 
         <ImageButton
             android:id="@+id/main_imgbtn1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/ic_keyboard_arrow_left"
             android:background="#00ff0000"
             android:onClick="onClickButtonDayBefore"/>
@@ -28,12 +28,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3월8일"
-            android:textColor="#A593E0"/>
+            android:textSize="20dp"
+            android:textColor="@color/Palette1Color1"/>
 
         <ImageButton
             android:id="@+id/main_imgbtn2"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/ic_keyboard_arrow_right"
             android:background="#00ff0000"
             android:onClick="onClickButtonDayAfter"/>

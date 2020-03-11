@@ -8,10 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-public class ImageCursorAdapter extends SimpleCursorAdapter {
+import androidx.cursoradapter.widget.SimpleCursorAdapter;
+
+public class CalendarCursorAdapter extends SimpleCursorAdapter {
 
     private Cursor c;
     private int layout;
@@ -19,7 +20,7 @@ public class ImageCursorAdapter extends SimpleCursorAdapter {
     private String[] from;
     private int[] to;
 
-    public ImageCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to) {
+    public CalendarCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to) {
         super(context, layout, c, from, to);
         this.c = c;
         this.layout = layout;
@@ -38,21 +39,12 @@ public class ImageCursorAdapter extends SimpleCursorAdapter {
 
         String eat = c.getString(c.getColumnIndex(from[0]));
         int category = c.getInt(c.getColumnIndex(from[1]));
-        String uri = c.getString(c.getColumnIndex(from[2]));
 
-        ImageView imageView = (ImageView) v.findViewById(to[2]);
-        TextView textView1 = (TextView) v.findViewById(to[0]);
-        TextView textView2 = (TextView) v.findViewById(to[1]);
-
-        Resources res = v.getResources();
-        String[] strs = res.getStringArray(R.array.spinner_array);
-
-        if(uri!=null) {imageView.setImageURI(Uri.parse(uri));}
-        textView1.setText(eat);
-        textView2.setText(strs[category]);
-        if(category==3) textView2.setTextColor(v.getResources().getColor(R.color.Palette2Color2));
-        else if(category==4) textView2.setTextColor(v.getResources().getColor(R.color.Palette2Color3));
-        else textView2.setTextColor(v.getResources().getColor(R.color.Palette2Color1));
+        TextView textView = (TextView) v.findViewById(to[0]);
+        textView.setText(eat);
+        if(category==3) textView.setTextColor(v.getResources().getColor(R.color.Palette2Color2));
+        else if(category==4) textView.setTextColor(v.getResources().getColor(R.color.Palette2Color3));
+        else textView.setTextColor(v.getResources().getColor(R.color.Palette2Color1));
 
         return (v);
     }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashActivity"
-    android:background="@color/colorPalette4">
+    android:background="@color/Palette1Color4">
 
     <TextView
         android:id="@+id/splash_txt"
@@ -13,6 +13,6 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="@string/splash_txt"
-        android:textColor="@color/colorPalette3"/>
+        android:textColor="@color/Palette1Color3"/>
 
 </LinearLayout>

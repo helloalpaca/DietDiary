@@ -55,7 +55,7 @@ public class Setting extends AppCompatActivity {
         FileWriter fw = null;
         try {
             fw = new FileWriter(file, false);
-            fw.write("date"+","+"place"+","+"eat"+"\n");
+            fw.write("date"+","+"place"+","+"eat"+","+"category"+"\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -66,12 +66,13 @@ public class Setting extends AppCompatActivity {
             String str1 = c.getString(c.getColumnIndex("date"));
             String str2 = c.getString(c.getColumnIndex("place"));
             String str3 = c.getString(c.getColumnIndex("eat"));
+            int str4 = c.getInt(c.getColumnIndex("category"));
             try {
-                fw.write(str1+","+str2+","+str3+"\n");
+                fw.write(str1+","+str2+","+str3+","+str4+"\n");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println("hello : "+str1 + ", "+str2 + ", "+str3);
+            System.out.println("hello : "+str1 + ", "+str2 + ", "+str3+", "+str4);
         }
 
         fw.close();
@@ -88,7 +89,6 @@ public class Setting extends AppCompatActivity {
         Intent intent = new Intent(Setting.this, ChangeSplashActivity.class);
         startActivity(intent);
     }
-
 
     @Override
     protected  void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -117,9 +117,11 @@ public class Setting extends AppCompatActivity {
                             values.put("date",record[0]);
                             values.put("place",record[1]);
                             values.put("eat",record[2]);
-                            System.out.println("reacord[0] : "+ record[0]);
-                            System.out.println("reacord[1] : "+ record[1]);
-                            System.out.println("reacord[2] : "+ record[2]);
+                            values.put("category", Integer.parseInt(record[3]));
+                            System.out.println("record[0] : "+ record[0]);
+                            System.out.println("record[1] : "+ record[1]);
+                            System.out.println("record[2] : "+ record[2]);
+                            System.out.println("record[3] : "+ record[3]);
                             db.insert("diary",null,values);
                         } else { break; }
                     } catch (IOException e) {

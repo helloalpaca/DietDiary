@@ -14,32 +14,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
-import static android.provider.CalendarContract.CalendarCache.URI;
 import static com.minseon.dietdiary.MainActivity.calendar;
 import static com.minseon.dietdiary.SplashActivity.db;
 import static com.minseon.dietdiary.MainActivity.format;
-import static java.sql.Types.NULL;
 
 public class AddList extends AppCompatActivity {
 
     static final int REQUEST_CODE = 0;
+    Spinner spinner;
     EditText place, eat;
     Button btn;
     ImageButton imgbtn;
     static Button datebtn;
     boolean flag = false;
     String ex_date, ex_place, ex_eat, ex_uri;
+    int ex_category;
     Uri uri;
 
     @Override
@@ -48,6 +42,7 @@ public class AddList extends AppCompatActivity {
         setContentView(R.layout.activity_add_list);
 
         datebtn = (Button)findViewById(R.id.addlist_btn_date);
+        spinner = (Spinner)findViewById(R.id.addlist_spinner);
         place = (EditText)findViewById(R.id.addlist_edit_place);
         eat = (EditText)findViewById(R.id.addlist_edit_eat);
         btn = (Button)findViewById(R.id.addlist_btn);
@@ -58,13 +53,15 @@ public class AddList extends AppCompatActivity {
         ex_place = intent.getStringExtra("place");
         ex_eat = intent.getStringExtra("eat");
         ex_uri = intent.getStringExtra("uri");
+        ex_category = intent.getIntExtra("category",0);
 
         System.out.println("date!! : "+ex_date);
         System.out.println("place!! : "+ex_place);
         System.out.println("eat!! : "+ex_eat);
         System.out.println("uri!! : "+ex_uri);
+        System.out.println("category!! : "+ex_category);
 
-        if(ex_date!=null|| ex_place!=null || ex_eat!=null || ex_uri!=null) flag = true;
+        if(ex_date!=null|| ex_place!=null || ex_eat!=null || ex_uri!=null ) flag = true;
 
         if(ex_date==null) { datebtn.setText(format.format(calendar.getTime()).toString()); }
         else { datebtn.setText(ex_date); }
@@ -74,8 +71,12 @@ public class AddList extends AppCompatActivity {
             imgbtn.setImageURI(tempuri);
         }
 
+        spinner.setSelection(ex_category);
         place.setText(ex_place);
         eat.setText(ex_eat);
+
+        System.out.println("flag!! : "+flag);
+        System.out.println("spinner!! : "+spinner.getSelectedItemPosition());
 
     }
 
@@ -90,11 +91,14 @@ public class AddList extends AppCompatActivity {
         values.put("date",datebtn.getText().toString());
         values.put("place",place.getText().toString());
         values.put("eat",eat.getText().toString());
+        values.put("category",spinner.getSelectedItemPosition());
+        System.out.println("spinner!! : "+spinner.getSelectedItemPosition());
 
         if(uri!=null) values.put("uri",getRealPathFromURI(uri).toString());
 
         if(flag){
-            db.update("diary",values,"date=? AND place=? AND eat=? AND uri=?", new String[]{ex_date,ex_place,ex_eat,ex_uri});
+            System.out.println("ㄷㅡㄹ어와땅!");
+            db.update("diary",values,"date=? AND place=? AND eat=? AND category=?", new String[]{ex_date,ex_place,ex_eat,Integer.toString(ex_category)});
         } else {
             db.insert("diary",null,values);
         }

@@ -25,10 +25,9 @@ public class ChangeSplashActivity extends AppCompatActivity {
     }
 
     public void onClickButtonModifySplash(View view){
-
         ContentValues values = new ContentValues();
-        values.put("txt",str);
+        values.put("txt",editText.getText().toString());
         db.update("splash",values,"txt=?",new String[]{str});
-
+        onBackPressed();
     }
 }

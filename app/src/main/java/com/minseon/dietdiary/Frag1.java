@@ -32,9 +32,9 @@ public class Frag1 extends Fragment {
 
         calendarView = (CalendarView)view.findViewById(R.id.calendarView);
 
-        String str = nowdatetime;
+        String str = txt.getText().toString();
         Date date = null;
-        try { date = format.parse(nowdatetime);
+        try { date = format.parse(str);
         } catch (ParseException e) { e.printStackTrace(); }
 
         cal = Calendar.getInstance();

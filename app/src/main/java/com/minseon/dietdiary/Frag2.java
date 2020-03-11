@@ -30,9 +30,9 @@ public class Frag2 extends Fragment {
 
         timePicker = (TimePicker)view.findViewById(R.id.datePicker);
 
-        String str = nowdatetime;
+        String str = txt.getText().toString();
         Date date = null;
-        try { date = format.parse(nowdatetime);
+        try { date = format.parse(str);
         } catch (ParseException e) { e.printStackTrace(); }
         cal = Calendar.getInstance();
         cal.setTime(date);
