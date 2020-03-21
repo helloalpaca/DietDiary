@@ -7,8 +7,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.minseon.dietdiary.mydb.DBHelper;
 
 public class SplashActivity extends AppCompatActivity {
 

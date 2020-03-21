@@ -26,7 +26,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/fab_margin"
-        android:background="#00ff0000"/>
+        android:background="#00ff0000"
+        android:onClick="onClickButtonMainAdd"/>
 
 <!--
     <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -25,6 +25,7 @@ public class Frag1 extends Fragment {
     View view;
     CalendarView calendarView;
     Calendar cal;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState){
@@ -33,6 +34,7 @@ public class Frag1 extends Fragment {
         calendarView = (CalendarView)view.findViewById(R.id.calendarView);
 
         String str = txt.getText().toString();
+
         Date date = null;
         try { date = format.parse(str);
         } catch (ParseException e) { e.printStackTrace(); }
@@ -43,7 +45,6 @@ public class Frag1 extends Fragment {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                System.out.println("year : "+year+", month : "+month+", day : "+dayOfMonth);
                 cal.set(year, month, dayOfMonth);
                 txt.setText(format.format(cal.getTime()).toString());
             }

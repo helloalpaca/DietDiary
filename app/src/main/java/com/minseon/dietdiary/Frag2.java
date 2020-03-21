@@ -40,7 +40,6 @@ public class Frag2 extends Fragment {
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                System.out.println("hourOfDay : "+hourOfDay+", minute : "+minute);
                 cal.set(Calendar.HOUR_OF_DAY,hourOfDay);
                 cal.set(Calendar.MINUTE,minute);
                 txt.setText(format.format(cal.getTime()).toString());
