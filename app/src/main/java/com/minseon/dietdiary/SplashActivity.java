@@ -34,6 +34,17 @@ public class SplashActivity extends AppCompatActivity {
             textView.setText(str);
         }
 
+        String sql2 = "SELECT * from diary";
+        final Cursor cursor = db.rawQuery(sql2,null);
+        while(cursor.moveToNext()){
+            String s1 = cursor.getString(cursor.getColumnIndex(("date")));
+            String s5 = cursor.getString(cursor.getColumnIndex(("category")));
+            String s2 = cursor.getString(cursor.getColumnIndex(("place")));
+            String s3 = cursor.getString(cursor.getColumnIndex(("eat")));
+            String s4 = cursor.getString(cursor.getColumnIndex(("uri")));
+            System.out.println(s1+" : "+s5+" : "+s2+" : "+s3+" : "+s4);
+        }
+
         Handler hd = new Handler();
         hd.postDelayed(new splashhandler(), 1500);
     }

@@ -1,4 +1,4 @@
-package com.minseon.dietdiary;
+package com.minseon.dietdiary.myadapter;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cursoradapter.widget.SimpleCursorAdapter;
+
+import com.minseon.dietdiary.R;
 
 public class CalendarCursorAdapter extends SimpleCursorAdapter {
 

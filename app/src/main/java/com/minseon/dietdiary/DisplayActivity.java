@@ -14,7 +14,7 @@ import android.widget.TextView;
 import static com.minseon.dietdiary.SplashActivity.db;
 import static java.sql.Types.NULL;
 
-public class Display extends AppCompatActivity {
+public class DisplayActivity extends AppCompatActivity {
 
     TextView date, category, place, eat;
     ImageView img;
@@ -50,7 +50,7 @@ public class Display extends AppCompatActivity {
     }
 
     public void onClickButtonModify(View view){
-        Intent intent = new Intent(Display.this, AddList.class);
+        Intent intent = new Intent(DisplayActivity.this, AddListActivity.class);
         intent.putExtra("date",str1);
         intent.putExtra("category",str5);
         intent.putExtra("place",str2);
@@ -68,7 +68,7 @@ public class Display extends AppCompatActivity {
         else { db.delete("diary","date=? AND place=? AND eat=? AND uri=? AND category=?",new String[]{str1, str2, str3, str4, s5}); }
 
 
-        Intent intent = new Intent(Display.this, MainActivity.class);
+        Intent intent = new Intent(DisplayActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 

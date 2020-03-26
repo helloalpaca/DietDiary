@@ -25,11 +25,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import static com.minseon.dietdiary.AddList.REQUEST_CODE;
+import static com.minseon.dietdiary.AddListActivity.REQUEST_CODE;
 import static com.minseon.dietdiary.SplashActivity.db;
 import static java.sql.Types.NULL;
 
-public class Setting extends AppCompatActivity {
+public class SettingActivity extends AppCompatActivity {
 
     Button btn_export, btn_import, btn_changesplash;
 
@@ -86,7 +86,7 @@ public class Setting extends AppCompatActivity {
     }
 
     public void onClickButtonChangeSplash(View view){
-        Intent intent = new Intent(Setting.this, ChangeSplashActivity.class);
+        Intent intent = new Intent(SettingActivity.this, ChangeSplashActivity.class);
         startActivity(intent);
     }
 

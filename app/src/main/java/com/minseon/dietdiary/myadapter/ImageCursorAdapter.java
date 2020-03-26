@@ -1,9 +1,15 @@
-package com.minseon.dietdiary;
+package com.minseon.dietdiary.myadapter;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.storage.StorageManager;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +17,22 @@ import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import com.minseon.dietdiary.R;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+
 public class ImageCursorAdapter extends SimpleCursorAdapter {
 
     private Cursor c;
     private int layout;
-    private Context context;
+    private static Context context;
     private String[] from;
     private int[] to;
 
@@ -26,6 +43,10 @@ public class ImageCursorAdapter extends SimpleCursorAdapter {
         this.context = context;
         this.from = from;
         this.to = to;
+    }
+
+    public Cursor getC(){
+        return c;
     }
 
     public View getView(int pos, View inView, ViewGroup parent) {
@@ -46,8 +67,44 @@ public class ImageCursorAdapter extends SimpleCursorAdapter {
 
         Resources res = v.getResources();
         String[] strs = res.getStringArray(R.array.spinner_array);
+/*
+        String rs = null;
+        String[] image_data = {MediaStore.Images.Media.DATA};
+        Cursor cursor = context.getContentResolver().query(Uri.parse(uri),image_data,null,null,null);
+        if(cursor.moveToNext()){
+            int col = cursor.getColumnIndex(MediaStore.Images.Media.DATA);
+            rs = cursor.getString(col);
+        }
+        System.out.println("RS!!!!!!!! : "+ rs);
 
-        if(uri!=null) {imageView.setImageURI(Uri.parse(uri));}
+
+
+        if(uri!=null) {
+            try {
+                InputStream in = cr.openInputStream(Uri.parse(uri));
+                Bitmap img = BitmapFactory.decodeStream(in);
+                imageView.setImageBitmap(img);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        int count = 0;
+        ContentResolver cr = context.getContentResolver();
+        Cursor imageCursor = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, new String[]{uri}, null);
+        if (imageCursor != null) {
+            count += imageCursor.getCount();
+            imageCursor.close();
+        }
+        System.out.println("IMAGECURSORCOUNT : "+count);
+*/
+
+        if(uri!=null){
+            System.out.println("[IMAGECURSORADAPTER] uri : "+uri);
+            imageView.setImageURI(Uri.parse(uri));
+        }
+
         textView1.setText(eat);
         textView2.setText(strs[category]);
         if(category==3) textView2.setTextColor(v.getResources().getColor(R.color.Palette2Color2));
@@ -56,4 +113,5 @@ public class ImageCursorAdapter extends SimpleCursorAdapter {
 
         return (v);
     }
+
 }

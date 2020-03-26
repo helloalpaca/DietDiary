@@ -1,6 +1,8 @@
 package com.minseon.dietdiary;
 
 import android.Manifest;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     static Calendar calendar;
     static ListView listView;
     static Button daybtn;
+    static Context applicationContext;
+    static ContentResolver cr;
 
     String[] permission_list = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -53,10 +58,30 @@ public class MainActivity extends AppCompatActivity {
 
         /* set Variables */
         calendar = Calendar.getInstance();
+        applicationContext = getApplication();
+        cr = getContentResolver();
 
         queryDB();
 
-        listView.setOnItemClickListener(new CustomOnItemClickListener());
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Cursor cursor = (Cursor) adapter.getItem(position);
+                String msg1 = cursor.getString(cursor.getColumnIndex("date"));
+                String msg2 = cursor.getString(cursor.getColumnIndex("place"));
+                String msg3 = cursor.getString(cursor.getColumnIndex("eat"));
+                String msg4 = cursor.getString(cursor.getColumnIndex("uri"));
+                int msg5 = cursor.getInt(cursor.getColumnIndex("category"));
+
+                Intent intent = new Intent(MainActivity.this, DisplayActivity.class);
+                intent.putExtra("date",msg1);
+                intent.putExtra("place",msg2);
+                intent.putExtra("eat",msg3);
+                intent.putExtra("uri",msg4);
+                intent.putExtra("category",msg5);
+                startActivity(intent);
+            }
+        });
         listView.setOnTouchListener(new CustomTouchListener());
     }
 
@@ -90,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
         /* query */
         String sql = "SELECT * FROM diary WHERE date BETWEEN '"+day+" 00:00:00' AND '"+day+" 23:59:59' order by date";
         final Cursor c = db.rawQuery(sql,null);
+
         String[] strs = new String[]{"eat","category","uri"};
         int[] ints = new int[] {R.id.listview_txt,R.id.listview_txt2,R.id.listview_img};
         adapter = new ImageCursorAdapter(listView.getContext(), R.layout.listview, c, strs, ints);

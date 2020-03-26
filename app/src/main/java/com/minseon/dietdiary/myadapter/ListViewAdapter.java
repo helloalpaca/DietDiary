@@ -1,4 +1,4 @@
-package com.minseon.dietdiary;
+package com.minseon.dietdiary.myadapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.minseon.dietdiary.R;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.minseon.dietdiary;
+package com.minseon.dietdiary.myadapter;
 
 import android.media.Image;
 

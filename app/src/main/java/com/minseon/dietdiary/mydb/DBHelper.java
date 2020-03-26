@@ -1,4 +1,4 @@
-package com.minseon.dietdiary;
+package com.minseon.dietdiary.mydb;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
