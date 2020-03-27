@@ -90,6 +90,14 @@ public class SettingActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onClickButtonPlayStore(View view){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(
+                "https://play.google.com/store/apps/details?id=com.minseon.dietdiary"));
+        intent.setPackage("com.android.vending");
+        startActivity(intent);
+    }
+
     @Override
     protected  void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);

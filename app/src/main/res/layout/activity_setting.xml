@@ -41,6 +41,14 @@
         android:text="첫화면 문구 변경하기"
         android:onClick="onClickButtonChangeSplash"/>
 
+    <Button
+        android:id="@+id/setting_btn_playstore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/setting_btn_splash"
+        android:text="별점주기"
+        android:onClick="onClickButtonPlayStore"/>
+
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
