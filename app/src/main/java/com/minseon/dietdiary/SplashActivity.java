@@ -2,6 +2,7 @@ package com.minseon.dietdiary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -55,4 +56,5 @@ public class SplashActivity extends AppCompatActivity {
             SplashActivity.this.finish();
         }
     }
+
 }

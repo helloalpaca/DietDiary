@@ -13,8 +13,6 @@
         android:roundIcon="@mipmap/icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ChangeSplashActivity"
-            android:theme="@style/MovieDialog"></activity>
         <activity
             android:name=".SplashActivity"
             android:label="@string/app_name">
@@ -24,20 +22,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SettingActivity" />
-        <activity android:name=".CalendarActivity" />
+        <activity
+            android:name=".MainActivity" />
+        <activity
+            android:name=".AddListActivity" />
+        <activity
+            android:name=".CalendarActivity" />
+        <activity
+            android:name=".ChangeSplashActivity"
+            android:theme="@style/MovieDialog" />
         <activity
             android:name=".ModifyDatetime"
             android:theme="@style/MovieDialog" />
         <activity
             android:name=".DisplayActivity"
             android:theme="@style/MovieDialog" />
-        <activity android:name=".AddListActivity" />
-        <activity android:name=".MainActivity"></activity>
 
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
             android:value="true" />
+
     </application>
 
 </manifest>

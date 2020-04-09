@@ -3,9 +3,14 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/Palette1Color4</item>
+        <item name="actionMenuTextColor">@color/Palette1Color3</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:fontFamily">@font/ridibatang</item>
+        <item name="android:textViewStyle">@style/RidiTextView</item>
+        <item name="android:buttonStyle">@style/RidiButton</item>
     </style>
 
     <style name="MovieDialog" parent="Theme.AppCompat.DayNight.Dialog">

@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="transparent">#00ff0000</color>
+
     <color name="Palette1Color1">#A593E0</color>
     <color name="Palette1Color2">#E0E3DA</color>
     <color name="Palette1Color3">#FFFFF3</color>

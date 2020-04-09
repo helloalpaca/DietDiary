@@ -111,8 +111,8 @@ public class AddListActivity extends AppCompatActivity {
     protected  void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
         if(requestCode == REQUEST_CODE) {
-            temp = data.getData();
             if(resultCode == RESULT_OK) {
+                temp = data.getData();
                 imgbtn.setImageURI(temp);
             }
             else if(resultCode == RESULT_CANCELED) {
