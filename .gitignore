@@ -12,7 +12,9 @@
 /captures
 .externalNativeBuild
 .cxx
-/app/src/main/res/values/string.xml
 
-app/src/main/res/values/strings.xml
+### 내가 추가한 gitignore 목록
+# 애드몹 광고 단위 ID
+/app/src/main/res/values/admob.xml
+# 실행 파일 (파일 크기가 너무 큼)
 app/release

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">다다일기</string>
+    <string-array name="spinner_array">
+        <item>아침</item>
+        <item>점심</item>
+        <item>저녁</item>
+    </string-array>
+    <string name="splash_txt">splash_txt</string>
+    <string name="nav_header_title">nav_header_title</string>
+    <string name="nav_export">export</string>
+    <string name="nav_import">import</string>
+    <string name="nav_splash">splash</string>
+    <string name="nav_rating">rating</string>
+</resources>
