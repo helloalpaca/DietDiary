@@ -5,6 +5,8 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -181,6 +183,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             changeSplash();
         } else if (id == R.id.nav_rating) {
             playStore();
+        } else if (id == R.id.nav_email) {
+            bugReport();
         }
 
         //DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -303,6 +307,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         intent.setData(Uri.parse(
                 "https://play.google.com/store/apps/details?id=com.minseon.dietdiary"));
         intent.setPackage("com.android.vending");
+        startActivity(intent);
+    }
+
+    public void bugReport(){
+        String appVersion = "";
+        try {
+            PackageInfo pInfo = applicationContext.getPackageManager().getPackageInfo(getPackageName(), 0);
+            appVersion = pInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e){
+            e.printStackTrace();
+        }
+
+        String[] address = {"mskwon16@address.com"};
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("plain/text");
+
+        intent.putExtra(Intent.EXTRA_EMAIL, address);
+        intent.putExtra(Intent.EXTRA_SUBJECT,"<다다일기 문의>");
+        intent.putExtra(Intent.EXTRA_TEXT,"앱 버전 : " + appVersion + "\n기기명 : \n안드로이드 OS 버전 : \n문의내용 : \n");
         startActivity(intent);
     }
 }

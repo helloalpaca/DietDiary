@@ -7,8 +7,8 @@ android {
         applicationId "com.minseon.dietdiary"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 3
-        versionName "1.1.0"
+        versionCode 5
+        versionName "1.1.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

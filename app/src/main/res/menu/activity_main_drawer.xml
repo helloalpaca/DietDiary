@@ -21,6 +21,10 @@
             android:id="@+id/nav_rating"
             android:title="@string/nav_rating" />
 
+        <item
+            android:id="@+id/nav_email"
+            android:title="@string/nav_email" />
+
     </group>
 
 

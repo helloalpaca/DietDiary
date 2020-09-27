@@ -7,9 +7,10 @@
         <item>저녁</item>
     </string-array>
     <string name="splash_txt">splash_txt</string>
-    <string name="nav_header_title">nav_header_title</string>
-    <string name="nav_export">export</string>
-    <string name="nav_import">import</string>
-    <string name="nav_splash">splash</string>
-    <string name="nav_rating">rating</string>
+    <string name="nav_header_title">설정</string>
+    <string name="nav_export">데이터 내보내기</string>
+    <string name="nav_import">데이터 가져오기</string>
+    <string name="nav_splash">첫화면 문구 변경하기</string>
+    <string name="nav_rating">별점주기</string>
+    <string name="nav_email">오류 알려주기</string>
 </resources>
