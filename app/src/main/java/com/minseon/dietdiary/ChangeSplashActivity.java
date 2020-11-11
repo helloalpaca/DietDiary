@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import static com.minseon.dietdiary.SplashActivity.db;
-import static com.minseon.dietdiary.SplashActivity.str;
+import static com.minseon.dietdiary.SplashActivity.splashText;
 
 public class ChangeSplashActivity extends AppCompatActivity {
 
@@ -20,14 +20,19 @@ public class ChangeSplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_splash);
 
+        /* get R.id */
         editText = (EditText)findViewById(R.id.chnagesplash_edittext);
-        editText.setText(str);
+
+        editText.setText(splashText);
     }
 
+    /* change splash text */
     public void onClickButtonModifySplash(View view){
         ContentValues values = new ContentValues();
         values.put("txt",editText.getText().toString());
-        db.update("splash",values,"txt=?",new String[]{str});
+
+        /* update db */
+        db.update("splash",values,"txt=?",new String[]{splashText});
         onBackPressed();
     }
 }

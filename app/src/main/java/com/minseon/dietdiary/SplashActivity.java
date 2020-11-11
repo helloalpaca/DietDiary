@@ -15,41 +15,38 @@ import com.minseon.dietdiary.mydb.DBHelper;
 public class SplashActivity extends AppCompatActivity {
 
     static DBHelper helper;
-    static String str;
+    static String splashText;
     static SQLiteDatabase db;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        TextView textView = (TextView)findViewById(R.id.splash_txt);
+        /* get R.id */
+        textView = (TextView)findViewById(R.id.splash_txt);
+
+        /* set Variables */
         helper = new DBHelper(SplashActivity.this, "person.db", null, 1);
         db = helper.getWritableDatabase();
         helper.onCreate(db);
 
+        /* get splash text from person.db */
         String sql = "SELECT * FROM splash WHERE _id=1";
         final Cursor c = db.rawQuery(sql,null);
+
         while(c.moveToNext()){
-            str = c.getString(c.getColumnIndex("txt"));
-            textView.setText(str);
+            splashText = c.getString(c.getColumnIndex("txt"));
+            textView.setText(splashText);
         }
 
-        String sql2 = "SELECT * from diary";
-        final Cursor cursor = db.rawQuery(sql2,null);
-        while(cursor.moveToNext()){
-            String s1 = cursor.getString(cursor.getColumnIndex(("date")));
-            String s5 = cursor.getString(cursor.getColumnIndex(("category")));
-            String s2 = cursor.getString(cursor.getColumnIndex(("place")));
-            String s3 = cursor.getString(cursor.getColumnIndex(("eat")));
-            String s4 = cursor.getString(cursor.getColumnIndex(("uri")));
-            System.out.println(s1+" : "+s5+" : "+s2+" : "+s3+" : "+s4);
-        }
-
+        /* splashhandler runs after 1.5 seconds */
         Handler hd = new Handler();
         hd.postDelayed(new splashhandler(), 1500);
     }
 
+    /* start MainActivity */
     private class splashhandler implements Runnable{
         public void run(){
             startActivity(new Intent(getApplication(), MainActivity.class));

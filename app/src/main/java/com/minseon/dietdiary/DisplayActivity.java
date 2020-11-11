@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,59 +20,67 @@ public class DisplayActivity extends AppCompatActivity {
 
     TextView date, category, place, eat;
     ImageView img;
-    String str1, str2, str3, str4;
-    int str5;
+
+    String extraDate, extraPlace, extraEat, extraUri;
+    int extraCategory;
+    String TAG = "DisplayAcitivy";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
 
+        /* get R.id */
         date = (TextView)findViewById(R.id.display_date);
         place = (TextView)findViewById(R.id.display_place);
         eat = (TextView)findViewById(R.id.displace_eat);
         img = (ImageView)findViewById(R.id.display_img);
         category = (TextView)findViewById(R.id.display_category);
 
+        /* Variables */
         Resources res = getResources();
         String[] strs = res.getStringArray(R.array.spinner_array);
 
         Intent intent = getIntent();
-        str1 = intent.getStringExtra("date");
-        str2 = intent.getStringExtra("place");
-        str3 = intent.getStringExtra("eat");
-        str4 = intent.getStringExtra("uri");
-        str5 = intent.getIntExtra("category",0);
+        extraDate = intent.getStringExtra("date");
+        extraPlace = intent.getStringExtra("place");
+        extraEat = intent.getStringExtra("eat");
+        extraUri = intent.getStringExtra("uri");
+        extraCategory = intent.getIntExtra("category",0);
 
-        category.setText(strs[str5]);
-        date.setText(str1);
-        place.setText(str2);
-        eat.setText(str3);
-        if(str4!=null) img.setImageURI(Uri.parse(str4));
+        category.setText(strs[extraCategory]);
+        date.setText(extraDate);
+        place.setText(extraPlace);
+        eat.setText(extraEat);
+        if(extraUri!=null) img.setImageURI(Uri.parse(extraUri));
     }
 
+    /* start AddListActivity to change Data */
     public void onClickButtonModify(View view){
         Intent intent = new Intent(DisplayActivity.this, AddListActivity.class);
-        intent.putExtra("date",str1);
-        intent.putExtra("category",str5);
-        intent.putExtra("place",str2);
-        intent.putExtra("eat",str3);
-        intent.putExtra("uri",str4);
+        intent.putExtra("date", extraDate);
+        intent.putExtra("category", extraCategory);
+        intent.putExtra("place", extraPlace);
+        intent.putExtra("eat", extraEat);
+        intent.putExtra("uri", extraUri);
+
         startActivity(intent);
     }
 
     public void onClickButtonDelete(View view){
-        System.out.println(str1+" "+str2+" "+str3+" "+str4+" "+Integer.toString(str5));
-        String s5 = Integer.toString(str5);
-        if(str4==null) {
-            System.out.println("들어옴!!!!!!!!!!!!!!!!!!!!!!!!!1");
-            db.delete("diary","date=? AND place=? AND eat=?", new String[]{str1, str2, str3}); }
-        else { db.delete("diary","date=? AND place=? AND eat=? AND uri=? AND category=?",new String[]{str1, str2, str3, str4, s5}); }
+        Log.i(TAG, "Delete Button Clicked");
+        String strCategory = Integer.toString(extraCategory);
 
+        /* delete */
+        if(extraUri==null) {
+            Log.i(TAG, "extraUri is null");
+            db.delete("diary","date=? AND place=? AND eat=?", new String[]{extraDate, extraPlace, extraEat}); }
+        else { db.delete("diary","date=? AND place=? AND eat=? AND uri=? AND category=?",
+                new String[]{extraDate, extraPlace, extraEat, extraUri, strCategory}); }
 
+        /* clear Activity Stack and start MainActivity */
         Intent intent = new Intent(DisplayActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-
     }
 }

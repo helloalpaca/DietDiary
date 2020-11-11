@@ -28,69 +28,74 @@ import static com.minseon.dietdiary.MainActivity.format;
 
 public class AddListActivity extends AppCompatActivity {
 
-    static Button datebtn;
+    static Button btnDate;
     Spinner spinner;
-    EditText place, eat;
-    ImageButton imgbtn;
+    EditText editTextPlace, editTextEat;
+    ImageButton btnImg;
 
     static final int REQUEST_CODE = 1;
-    boolean flag = false;
-    String _date, _place, _eat, _uri;
-    int _category;
-    Uri temp = null;
+    boolean flag = false;   // flag to confirm list existence
+    String extraDate, extraPlace, extraEat, extraUri;
+    int extraCategory;
+    Uri tempUri = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_list);
 
-        datebtn = (Button)findViewById(R.id.addlist_btn_date);
+        /* get R.id */
+        btnDate = (Button)findViewById(R.id.addlist_btn_date);
         spinner = (Spinner)findViewById(R.id.addlist_spinner);
-        place = (EditText)findViewById(R.id.addlist_edit_place);
-        eat = (EditText)findViewById(R.id.addlist_edit_eat);
-        imgbtn = (ImageButton)findViewById(R.id.addlist_imgbtn);
+        editTextPlace = (EditText)findViewById(R.id.addlist_edit_place);
+        editTextEat = (EditText)findViewById(R.id.addlist_edit_eat);
+        btnImg = (ImageButton)findViewById(R.id.addlist_imgbtn);
 
+        /* get extra data from MainActivity */
         Intent intent = getIntent();
-        _date = intent.getStringExtra("date");
-        _category = intent.getIntExtra("category",0);
-        _place = intent.getStringExtra("place");
-        _eat = intent.getStringExtra("eat");
-        _uri = intent.getStringExtra("uri");
+        extraDate = intent.getStringExtra("date");
+        extraCategory = intent.getIntExtra("category",0);
+        extraPlace = intent.getStringExtra("place");
+        extraEat = intent.getStringExtra("eat");
+        extraUri = intent.getStringExtra("uri");
 
-        if(_date!=null|| _place!=null || _eat!=null || _uri!=null ) flag = true;
+        if(extraDate!=null|| extraPlace!=null || extraEat!=null || extraUri!=null ) { flag = true; }
 
         /* set data */
-        if(_date==null) { datebtn.setText(format.format(calendar.getTime()).toString());
-        } else { datebtn.setText(_date); }
+        if(extraDate==null) {
+            btnDate.setText(format.format(calendar.getTime()).toString());
+        } else {
+            btnDate.setText(extraDate);
+        }
 
-        if(_uri!=null){ imgbtn.setImageURI(Uri.parse(_uri)); }
+        if(extraUri!=null){ btnImg.setImageURI(Uri.parse(extraUri)); }
 
-        spinner.setSelection(_category);
-        place.setText(_place);
-        eat.setText(_eat);
+        spinner.setSelection(extraCategory);
+        editTextPlace.setText(extraPlace);
+        editTextEat.setText(extraEat);
     }
 
     public void onClickButtonDate(View view){
         Intent intent = new Intent(AddListActivity.this, ModifyDatetime.class);
-        intent.putExtra("Datetime",datebtn.getText());
+        intent.putExtra("Datetime",btnDate.getText());
         startActivity(intent);
     }
 
     public void onClickButtonAdd(View view){
         ContentValues values = new ContentValues();
-        values.put("date",datebtn.getText().toString());
-        values.put("place",place.getText().toString());
-        values.put("eat",eat.getText().toString());
-        values.put("category",spinner.getSelectedItemPosition());
+        values.put("date", btnDate.getText().toString());
+        values.put("place", editTextPlace.getText().toString());
+        values.put("eat", editTextEat.getText().toString());
+        values.put("category", spinner.getSelectedItemPosition());
 
-        if(temp!=null) {
-            //System.out.println("TEMP:"+ RealPathUtil.getRealPath(this,temp));
-            values.put("uri",RealPathUtil.getRealPath(this, temp));
+        if(tempUri!=null) {
+            values.put("uri",RealPathUtil.getRealPath(this, tempUri));
         }
 
+        /* update or insert db */
         if(flag){
             db.update("diary",values,"date=? AND place=? AND eat=? AND category=?",
-                    new String[]{_date,_place,_eat,Integer.toString(_category)});
+                    new String[]{extraDate,extraPlace,extraEat,Integer.toString(extraCategory)});
         } else {
             db.insert("diary",null,values);
         }
@@ -112,8 +117,8 @@ public class AddListActivity extends AppCompatActivity {
         super.onActivityResult(requestCode,resultCode,data);
         if(requestCode == REQUEST_CODE) {
             if(resultCode == RESULT_OK) {
-                temp = data.getData();
-                imgbtn.setImageURI(temp);
+                tempUri = data.getData();
+                btnImg.setImageURI(tempUri);
             }
             else if(resultCode == RESULT_CANCELED) {
                 Toast.makeText(this, "사진 선택 취소", Toast.LENGTH_LONG).show();

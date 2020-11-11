@@ -56,18 +56,20 @@ import static com.minseon.dietdiary.SplashActivity.db;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
 
+    /* date format */
     static final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
     static final SimpleDateFormat formatdate = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
     static final SimpleDateFormat formatmain = new SimpleDateFormat("MM월 dd일",Locale.KOREA);
 
-    static ImageCursorAdapter adapter;
-    static Calendar calendar;
     static ListView listView;
     static Button daybtn;
-    static Context applicationContext;
-    static ContentResolver cr;
     DrawerLayout drawLayout;
     NavigationView navigationView;
+
+    static ImageCursorAdapter adapter;
+    static Calendar calendar;
+    static Context applicationContext;
+    static ContentResolver cr;
 
     String[] permission_list = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -101,9 +103,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         queryDB();
+
+        /* listView click listener */
         listView.setOnItemClickListener(this);
         listView.setOnTouchListener(new CustomTouchListener());
 
+        /* Admob */
         AdView adView = (AdView)findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
@@ -127,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }
 
+    /* query DB by date */
     static public void queryDB(){
         String day = formatdate.format(calendar.getTime());
         daybtn.setText(formatmain.format(calendar.getTime()));
@@ -135,8 +141,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String sql = "SELECT * FROM diary WHERE date BETWEEN '"+day+" 00:00:00' AND '"+day+" 23:59:59' order by date";
         final Cursor c = db.rawQuery(sql,null);
 
-        String[] strs = new String[]{"eat","category","uri"};
-        int[] ints = new int[] {R.id.listview_txt,R.id.listview_txt2,R.id.listview_img};
+        String[] strs = new String[]{"eat", "category", "uri"};
+        int[] ints = new int[] {R.id.listview_txt, R.id.listview_txt2, R.id.listview_img};
         adapter = new ImageCursorAdapter(listView.getContext(), R.layout.listview, c, strs, ints);
 
         listView.setAdapter(adapter);
@@ -164,7 +170,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.action_drawer){
             drawLayout.openDrawer(GravityCompat.END);
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -187,52 +192,60 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             bugReport();
         }
 
-        //DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        //drawer.closeDrawer(GravityCompat.START);
+        /*DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);*/
         return true;
     }
 
+    /* start DisplayActivity */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Cursor cursor = (Cursor) adapter.getItem(position);
-        String msg1 = cursor.getString(cursor.getColumnIndex("date"));
-        String msg2 = cursor.getString(cursor.getColumnIndex("place"));
-        String msg3 = cursor.getString(cursor.getColumnIndex("eat"));
-        String msg4 = cursor.getString(cursor.getColumnIndex("uri"));
-        int msg5 = cursor.getInt(cursor.getColumnIndex("category"));
+        String clicked_date = cursor.getString(cursor.getColumnIndex("date"));
+        String clicked_place = cursor.getString(cursor.getColumnIndex("place"));
+        String clicked_eat = cursor.getString(cursor.getColumnIndex("eat"));
+        String clicked_uri = cursor.getString(cursor.getColumnIndex("uri"));
+        int clicked_category = cursor.getInt(cursor.getColumnIndex("category"));
 
         Intent intent = new Intent(MainActivity.this, DisplayActivity.class);
-        intent.putExtra("date",msg1);
-        intent.putExtra("place",msg2);
-        intent.putExtra("eat",msg3);
-        intent.putExtra("uri",msg4);
-        intent.putExtra("category",msg5);
+        intent.putExtra("date", clicked_date);
+        intent.putExtra("place", clicked_place);
+        intent.putExtra("eat", clicked_eat);
+        intent.putExtra("uri", clicked_uri);
+        intent.putExtra("category", clicked_category);
+
         startActivity(intent);
     }
 
+    /* export db in .csv format */
     public void exportJson()  {
+        /* get directory */
         File emulated = Environment.getExternalStorageDirectory();
         File dir = new File(emulated.getAbsolutePath() + "/dietdiary");
         dir.mkdirs();
+
+        /* make file */
         File file = new File(dir,  "backup.csv");
         FileWriter fw = null;
         try {
             fw = new FileWriter(file, false);
-            fw.write("date"+","+"place"+","+"eat"+","+"category"+"\n");
+            fw.write("date"+","+"place"+","+"eat"+","+"category"+"\n"); // write categories
 
+            /* query */
             String sql = "SELECT * FROM diary";
             Cursor c = db.rawQuery(sql,null);
             while(c.moveToNext()){
-                String str1 = c.getString(c.getColumnIndex("date"));
-                String str2 = c.getString(c.getColumnIndex("place"));
-                String str3 = c.getString(c.getColumnIndex("eat"));
-                int str4 = c.getInt(c.getColumnIndex("category"));
+                String strDate = c.getString(c.getColumnIndex("date"));
+                String strPlace = c.getString(c.getColumnIndex("place"));
+                String strEat = c.getString(c.getColumnIndex("eat"));
+                int strCategory = c.getInt(c.getColumnIndex("category"));
+
+                /* write file */
                 try {
-                    fw.write(str1+","+str2+","+str3+","+str4+"\n");
+                    fw.write(strDate+","+strPlace+","+strEat+","+strCategory+"\n");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                System.out.println("hello : "+str1 + ", "+str2 + ", "+str3+", "+str4);
             }
 
             fw.close();
@@ -242,6 +255,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    /* import db */
     public void importJson(){
         Intent intent = new Intent();
         intent.setType("text/*");
@@ -249,6 +263,49 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivityForResult(intent, REQUEST_CODE);
     }
 
+    /* start changeSplashActivity to change splash text*/
+    public void changeSplash(){
+        Intent intent = new Intent(this, ChangeSplashActivity.class);
+        startActivity(intent);
+    }
+
+    /* start playstore */
+    public void playStore() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(
+                "https://play.google.com/store/apps/details?id=com.minseon.dietdiary"));
+        intent.setPackage("com.android.vending");
+        startActivity(intent);
+    }
+
+    /* bug report to developer by mail */
+    public void bugReport(){
+        /* get app version */
+        String appVersion = "";
+        try {
+            PackageInfo pInfo = applicationContext.getPackageManager().getPackageInfo(getPackageName(), 0);
+            appVersion = pInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e){
+            e.printStackTrace();
+        }
+
+        /* set report text */
+        String[] address = {"mskwon16@address.com"};
+        String reportSubject = "<다다일기 문의>";
+        String reportText = "앱 버전 : " + appVersion + "\n기기명 : \n안드로이드 OS 버전 : \n문의내용 : \n";
+
+        /* start mail activity */
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("plain/text");
+
+        intent.putExtra(Intent.EXTRA_EMAIL, address);
+        intent.putExtra(Intent.EXTRA_SUBJECT,reportSubject);
+        intent.putExtra(Intent.EXTRA_TEXT, reportText);
+
+        startActivity(intent);
+    }
+
+    /* importJson startActivityForResult */
     @Override
     protected  void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
@@ -273,14 +330,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     try {
                         if ((record = read.readNext()) != null) {
                             ContentValues values = new ContentValues();
-                            values.put("date",record[0]);
-                            values.put("place",record[1]);
-                            values.put("eat",record[2]);
+                            values.put("date", record[0]);
+                            values.put("place", record[1]);
+                            values.put("eat", record[2]);
                             values.put("category", Integer.parseInt(record[3]));
-                            System.out.println("record[0] : "+ record[0]);
-                            System.out.println("record[1] : "+ record[1]);
-                            System.out.println("record[2] : "+ record[2]);
-                            System.out.println("record[3] : "+ record[3]);
+
                             db.insert("diary",null,values);
                         } else { break; }
                     } catch (IOException e) {
@@ -295,37 +349,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "파일 선택 취소", Toast.LENGTH_LONG).show();
             }
         }
-    }
-
-    public void changeSplash(){
-        Intent intent = new Intent(this, ChangeSplashActivity.class);
-        startActivity(intent);
-    }
-
-    public void playStore() {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(
-                "https://play.google.com/store/apps/details?id=com.minseon.dietdiary"));
-        intent.setPackage("com.android.vending");
-        startActivity(intent);
-    }
-
-    public void bugReport(){
-        String appVersion = "";
-        try {
-            PackageInfo pInfo = applicationContext.getPackageManager().getPackageInfo(getPackageName(), 0);
-            appVersion = pInfo.versionName;
-        } catch (PackageManager.NameNotFoundException e){
-            e.printStackTrace();
-        }
-
-        String[] address = {"mskwon16@address.com"};
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("plain/text");
-
-        intent.putExtra(Intent.EXTRA_EMAIL, address);
-        intent.putExtra(Intent.EXTRA_SUBJECT,"<다다일기 문의>");
-        intent.putExtra(Intent.EXTRA_TEXT,"앱 버전 : " + appVersion + "\n기기명 : \n안드로이드 OS 버전 : \n문의내용 : \n");
-        startActivity(intent);
     }
 }

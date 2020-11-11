@@ -67,38 +67,6 @@ public class ImageCursorAdapter extends SimpleCursorAdapter {
 
         Resources res = v.getResources();
         String[] strs = res.getStringArray(R.array.spinner_array);
-/*
-        String rs = null;
-        String[] image_data = {MediaStore.Images.Media.DATA};
-        Cursor cursor = context.getContentResolver().query(Uri.parse(uri),image_data,null,null,null);
-        if(cursor.moveToNext()){
-            int col = cursor.getColumnIndex(MediaStore.Images.Media.DATA);
-            rs = cursor.getString(col);
-        }
-        System.out.println("RS!!!!!!!! : "+ rs);
-
-
-
-        if(uri!=null) {
-            try {
-                InputStream in = cr.openInputStream(Uri.parse(uri));
-                Bitmap img = BitmapFactory.decodeStream(in);
-                imageView.setImageBitmap(img);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-        int count = 0;
-        ContentResolver cr = context.getContentResolver();
-        Cursor imageCursor = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, new String[]{uri}, null);
-        if (imageCursor != null) {
-            count += imageCursor.getCount();
-            imageCursor.close();
-        }
-        System.out.println("IMAGECURSORCOUNT : "+count);
-*/
 
         if(uri!=null){
             System.out.println("[IMAGECURSORADAPTER] uri : "+uri);
