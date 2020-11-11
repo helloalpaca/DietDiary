@@ -311,12 +311,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onActivityResult(requestCode,resultCode,data);
         if(requestCode == REQUEST_CODE) {
             if(resultCode == RESULT_OK) {
-                Uri temp = data.getData();
+                /* get file */
+                Uri tempUri = data.getData();
                 InputStream in = null;
-                try { in = getContentResolver().openInputStream(temp);
+                try { in = getContentResolver().openInputStream(tempUri);
                 } catch (FileNotFoundException e) { e.printStackTrace(); }
                 InputStreamReader is = new InputStreamReader(in);
 
+                /* read csv file */
                 BufferedReader reader = new BufferedReader(is);
                 CSVReader read = new CSVReader(reader);
                 String[] record = null;
@@ -326,6 +328,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                /* insert .csv file data to db */
                 while (true){
                     try {
                         if ((record = read.readNext()) != null) {
@@ -341,6 +345,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         e.printStackTrace();
                     }
                 }
+
+                /* clear Activity Stack and restart MainActivity */
                 Intent intent = getIntent();
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
