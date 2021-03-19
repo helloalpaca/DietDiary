@@ -1,7 +1,6 @@
 # DietDiary (다다일기 - 심플한 식단 기록)
 Simple Diet Diary
 - email address : jms393497@gmail.com <br />
-- blog : https://popcorn16.tistory.com/ <br />
 
 # Google Play Store
 - Link : https://play.google.com/store/apps/details?id=com.minseon.dietdiary <br />
