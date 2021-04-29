@@ -13,4 +13,6 @@
     <string name="nav_splash">첫화면 문구 변경하기</string>
     <string name="nav_rating">별점주기</string>
     <string name="nav_email">오류 알려주기</string>
+
+    <string name="MyadUnitId">ca-app-pub-2261995301947811/3251121081</string>
 </resources>
