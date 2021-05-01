@@ -1,4 +1,4 @@
-package com.minseon.dietdiary.mylistener;
+package com.minseon.dietdiary.listener;
 
 import android.annotation.SuppressLint;
 import android.content.ContentUris;

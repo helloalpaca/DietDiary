@@ -11,16 +11,11 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 
 import android.os.Environment;
@@ -35,9 +30,8 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.navigation.NavigationView;
-import com.minseon.dietdiary.myadapter.ImageCursorAdapter;
-import com.minseon.dietdiary.mylistener.CustomOnItemClickListener;
-import com.minseon.dietdiary.mylistener.CustomTouchListener;
+import com.minseon.dietdiary.adapter.ImageCursorAdapter;
+import com.minseon.dietdiary.listener.CustomTouchListener;
 import com.opencsv.CSVReader;
 
 import java.io.BufferedReader;

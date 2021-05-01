@@ -1,4 +1,4 @@
-package com.minseon.dietdiary.mylistener;
+package com.minseon.dietdiary.listener;
 
 import android.util.Log;
 import android.view.MotionEvent;

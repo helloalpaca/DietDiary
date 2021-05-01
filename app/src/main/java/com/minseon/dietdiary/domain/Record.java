@@ -4,8 +4,6 @@ import java.util.Date;
 
 public class Record {
 
-    // date datetime, place text, eat text, category int, uri text
-
     private Date date;
     private String place;
     private String eat;
@@ -49,6 +47,14 @@ public class Record {
     }
 
     public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    public Record(Date date, String place, String eat, int category, String uri){
+        this.date = date;
+        this.place = place;
+        this.eat = eat;
+        this.category = category;
         this.uri = uri;
     }
 }

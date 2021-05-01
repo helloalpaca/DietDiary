@@ -7,9 +7,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.CalendarView;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.minseon.dietdiary.myadapter.CalendarCursorAdapter;
+import com.minseon.dietdiary.adapter.CalendarCursorAdapter;
 
 import java.util.Calendar;
 
